@@ -8,9 +8,9 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-#ICON = qtLineConverter.png
+ICON = qtLineConverter.png
 #win32:RC_ICONS = qtLineConverter.ico
-ICON = qtLineConverter.icns
+#ICON = qtLineConverter.icns
 
 TARGET = qtLineConverter
 TEMPLATE = app
