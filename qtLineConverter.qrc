@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>qtLineConverter.png</file>
+        <file>qtLineConverter.ico</file>
+        <file>qtLineConverter.icns</file>
+    </qresource>
+</RCC>
