@@ -1,5 +1,5 @@
 /*--------------------------------------------------------------------*/
-/* LineConverter 0.4 - (c) GienekP                                    */
+/* LineConverter v0.5 - (c) GienekP                                   */
 /*--------------------------------------------------------------------*/
 #ifndef ATARIPALGEN_H
 #define ATARIPALGEN_H
@@ -26,7 +26,6 @@ public:
     quint32 getRGB(quint8 c);
     quint32 getGray(quint8 c);
     quint32 getGreen(quint8 c);
-    quint32 distance(quint32 c1, quint32 c2);
     quint8 nearest(quint32 c);
     quint32 average(quint32 a,quint32 b,quint32 c,quint32 d);
 };

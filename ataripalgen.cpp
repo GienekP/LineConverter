@@ -1,5 +1,5 @@
 /*--------------------------------------------------------------------*/
-/* LineConverter 0.4 - (c) GienekP                                    */
+/* LineConverter v0.5 - (c) GienekP                                   */
 /*--------------------------------------------------------------------*/
 #include "ataripalgen.h"
 /*--------------------------------------------------------------------*/
@@ -93,21 +93,6 @@ int ATARIpalGen::square(int x)
 qreal ATARIpalGen::square(qreal x)
 {
     return (x*x);
-}
-/*--------------------------------------------------------------------*/
-quint32 ATARIpalGen::distance(quint32 c1, quint32 c2)
-{
-    quint32 d;
-    int ra,ga,ba;
-    int rb,gb,bb;
-    ra=((c1>>16)&0xFF);
-    ga=((c1>>8)&0xFF);
-    ba=(c1&0xFF);
-    rb=((c2>>16)&0xFF);
-    gb=((c2>>8)&0xFF);
-    bb=(c2&0xFF);
-    d=square(ra-rb)+square(ga-gb)+square(ba-bb);
-    return d;
 }
 /*--------------------------------------------------------------------*/
 quint32 ATARIpalGen::average(quint32 a,quint32 b,quint32 c,quint32 d)

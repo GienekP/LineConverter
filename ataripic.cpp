@@ -1,5 +1,5 @@
 /*--------------------------------------------------------------------*/
-/* LineConverter 0.4 - (c) GienekP                                    */
+/* LineConverter v0.5 - (c) GienekP                                   */
 /*--------------------------------------------------------------------*/
 #include "ataripic.h"
 #include "basexex.h"
@@ -139,11 +139,11 @@ quint8 ATARIpic::averageChroma(const quint8 *dta, quint32 s)
 /*--------------------------------------------------------------------*/
 void ATARIpic::lineConvert(const quint8 *in, quint8 *out)
 {
-    const quint32 ct[13]={8,23,14,12,12,9,2,16,22,12,12,12,6};
+    const quint32 ct[14]={4,16,20,12,12,12,4,11,16, 16,12,12,10,3};
     quint32 i,j,k,h=0;
     for (i=0; i<(ALCHEIGHT/2); i++)
     {
-        for (j=0; j<13; j++)
+        for (j=0; j<14; j++)
         {
             quint32 cyc=ct[j];
             quint8 a=averageChroma(&in[h],cyc);
@@ -152,7 +152,7 @@ void ATARIpic::lineConvert(const quint8 *in, quint8 *out)
                 out[h]=((in[h]&0x0F)|a);
                 h++;
             };
-            rp[i*13+j]=a;
+            rp[i*14+j]=a;
         };
     };
 }
@@ -178,7 +178,7 @@ void ATARIpic::saveXEX(QDataStream &out)
         };
         pos++;
     };
-    pos=0x00002909;
+    pos=0x00002900;
     i=0;
     while ((i<RCSIZE) && (pos<(sizeof(basexex))))
     {
@@ -230,7 +230,6 @@ void ATARIpic::saveASM(QTextStream &out)
     out << "VCOUNT  = $D40B;" << endl;
     out << endl;
     out << ".define poke mva #%%2 %%1" << endl;
-    out << ".define pc mva #%%1 COLBAK" << endl;
     out << endl;
     out << "    org $2000" << endl;
     out << "    run MAIN" << endl;
@@ -287,12 +286,12 @@ void ATARIpic::saveASM(QTextStream &out)
     out << "    lda VCOUNT" << endl;
     out << "    cmp #$02" << endl;
     out << "    bne LOOP" << endl;
-    out << "    pc($00)" << endl;
+    out << "    lda #$00" << endl;
+    out << "    sta COLBAK" << endl;
     out << "    sta WSYNC" << endl;
     out << "    sta WSYNC" << endl;
     out << "    sta WSYNC" << endl;
     out << "    sta WSYNC" << endl;
-    out << "    lda 0" << endl;
     out << "    nop" << endl;
     out << "    nop" << endl;
     out << "    nop" << endl;
@@ -302,14 +301,22 @@ void ATARIpic::saveASM(QTextStream &out)
     out << "    nop" << endl;
     out << "    nop" << endl;
     reset();
-    out << "    pc("<<rh()<<")" << endl;
-    out << "    pc("<<rh()<<")" << endl;
-    out << "    pc("<<rh()<<")" << endl;
-    out << "    pc("<<rh()<<")" << endl;
-    out << "    pc("<<rh()<<")" << endl;
-    out << "    pc("<<rh()<<")" << endl;
-    out << "    pc("<<rh()<<")" << endl;
-    out << "    pc($00)" << endl; // Clear
+    out << "    lda #" << rh() << endl;
+    out << "    ldx #" << rh() << endl;
+    out << "    ldy #" << rh() << endl;
+    out << "    sta COLBAK" << endl;
+    out << "    stx COLBAK" << endl;
+    out << "    sty COLBAK" << endl;
+    out << "    lda #" << rh() << endl;
+    out << "    sta COLBAK" << endl;
+    out << "    lda #" << rh() << endl;
+    out << "    sta COLBAK" << endl;
+    out << "    lda #" << rh() << endl;
+    out << "    sta COLBAK" << endl;
+    out << "    lda #" << rh() << endl;
+    out << "    sta COLBAK" << endl;
+    out << "    lda #$00;" << endl;
+    out << "    sta COLBAK" << endl;
     out << "    nop" << endl;
     out << "    nop" << endl;
     out << "    nop" << endl;
@@ -318,16 +325,22 @@ void ATARIpic::saveASM(QTextStream &out)
     out << "    nop" << endl;
     out << "    nop" << endl;
     out << "    nop" << endl;
-    out << "    pc("<<rh()<<")" << endl;
-    out << "    pc("<<rh()<<")" << endl;
-    out << "    pc("<<rh()<<")" << endl;
-    out << "    pc("<<rh()<<")" << endl;
-    out << "    pc("<<rh()<<")" << endl;
-    out << "    pc("<<rh()<<")" << endl;
-    out << "    pc($00)" << endl; // Clear
-    out << "    nop" << endl;
-    out << "    nop" << endl;
-    out << "    nop" << endl;
+    out << "    lda #" << rh() << endl;
+    out << "    ldx #" << rh() << endl;
+    out << "    ldy #" << rh() << endl;
+    out << "    sta COLBAK" << endl;
+    out << "    stx COLBAK" << endl;
+    out << "    sty COLBAK" << endl;
+    out << "    lda #" << rh() << endl;
+    out << "    sta COLBAK" << endl;
+    out << "    lda #" << rh() << endl;
+    out << "    sta COLBAK" << endl;
+    out << "    lda #" << rh() << endl;
+    out << "    sta COLBAK" << endl;
+    out << "    lda #" << rh() << endl;
+    out << "    sta COLBAK" << endl;
+    out << "    lda #$00" << endl;
+    out << "    sta COLBAK" << endl;
     for (i=0; i<119; i++)
     {
         out << "    nop" << endl;
@@ -336,14 +349,22 @@ void ATARIpic::saveASM(QTextStream &out)
         out << "    nop" << endl;
         out << "    nop" << endl;
         out << "    nop" << endl;
-        out << "    pc("<<rh()<<")" << endl;
-        out << "    pc("<<rh()<<")" << endl;
-        out << "    pc("<<rh()<<")" << endl;
-        out << "    pc("<<rh()<<")" << endl;
-        out << "    pc("<<rh()<<")" << endl;
-        out << "    pc("<<rh()<<")" << endl;
-        out << "    pc("<<rh()<<")" << endl;
-        out << "    pc($00)" << endl; // Clear
+        out << "    lda #" << rh() << endl;
+        out << "    ldx #" << rh() << endl;
+        out << "    ldy #" << rh() << endl;
+        out << "    sta COLBAK" << endl;
+        out << "    stx COLBAK" << endl;
+        out << "    sty COLBAK" << endl;
+        out << "    lda #" << rh() << endl;
+        out << "    sta COLBAK" << endl;
+        out << "    lda #" << rh() << endl;
+        out << "    sta COLBAK" << endl;
+        out << "    lda #" << rh() << endl;
+        out << "    sta COLBAK" << endl;
+        out << "    lda #" << rh() << endl;
+        out << "    sta COLBAK" << endl;
+        out << "    lda #$00;" << endl;
+        out << "    sta COLBAK" << endl;
         out << "    nop" << endl;
         out << "    nop" << endl;
         out << "    nop" << endl;
@@ -352,18 +373,23 @@ void ATARIpic::saveASM(QTextStream &out)
         out << "    nop" << endl;
         out << "    nop" << endl;
         out << "    nop" << endl;
-        out << "    pc("<<rh()<<")" << endl;
-        out << "    pc("<<rh()<<")" << endl;
-        out << "    pc("<<rh()<<")" << endl;
-        out << "    pc("<<rh()<<")" << endl;
-        out << "    pc("<<rh()<<")" << endl;
-        out << "    pc("<<rh()<<")" << endl;
-        out << "    pc($00)" << endl; // Clear
-        out << "    nop" << endl;
-        out << "    nop" << endl;
-        out << "    nop" << endl;
+        out << "    lda #" << rh() << endl;
+        out << "    ldx #" << rh() << endl;
+        out << "    ldy #" << rh() << endl;
+        out << "    sta COLBAK" << endl;
+        out << "    stx COLBAK" << endl;
+        out << "    sty COLBAK" << endl;
+        out << "    lda #" << rh() << endl;
+        out << "    sta COLBAK" << endl;
+        out << "    lda #" << rh() << endl;
+        out << "    sta COLBAK" << endl;
+        out << "    lda #" << rh() << endl;
+        out << "    sta COLBAK" << endl;
+        out << "    lda #" << rh() << endl;
+        out << "    sta COLBAK" << endl;
+        out << "    lda #$00" << endl;
+        out << "    sta COLBAK" << endl;
     };
-    out << "    pc($00)" << endl;
     out << "    lda TRIG0" << endl;
     out << "    beq STOP" << endl;
     out << "    lda TRIG1" << endl;

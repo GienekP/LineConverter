@@ -291,7 +291,7 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "LineConverter Gr9 v0.4", 0));
+        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "LineConverter Gr9 v0.5", 0));
         groupBox_1->setTitle(QApplication::translate("MainWindow", "Preview", 0));
         radioButton_1->setText(QApplication::translate("MainWindow", "Original", 0));
         radioButton_2->setText(QApplication::translate("MainWindow", "GTIA", 0));

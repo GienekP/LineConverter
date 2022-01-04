@@ -1,5 +1,5 @@
 /*--------------------------------------------------------------------*/
-/* LineConverter 0.4 - (c) GienekP                                    */
+/* LineConverter v0.5 - (c) GienekP                                   */
 /*--------------------------------------------------------------------*/
 #ifndef ATARIPIC_H
 #define ATARIPIC_H
@@ -12,7 +12,7 @@
 #define ALCWIDTH 320
 #define ALCHEIGHT 240
 #define GTIAWIDTH 80
-#define RCSIZE (120*13)
+#define RCSIZE (120*14)
 /*--------------------------------------------------------------------*/
 class ATARIpic
 {

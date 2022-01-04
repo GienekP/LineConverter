@@ -1,5 +1,5 @@
 /*--------------------------------------------------------------------*/
-/* LineConverter 0.4 - (c) GienekP                                    */
+/* LineConverter v0.5 - (c) GienekP                                   */
 /*--------------------------------------------------------------------*/
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
