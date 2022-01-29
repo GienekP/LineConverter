@@ -139,7 +139,7 @@ quint8 ATARIpic::averageChroma(const quint8 *dta, quint32 s)
 /*--------------------------------------------------------------------*/
 void ATARIpic::lineConvert(const quint8 *in, quint8 *out)
 {
-    const quint32 ct[14]={4,16,20,12,12,12,4,11,16, 16,12,12,10,3};
+    const quint32 ct[14]={4,16,20,12,12,12,4,11,16,16,12,12,10,3};
     quint32 i,j,k,h=0;
     for (i=0; i<(ALCHEIGHT/2); i++)
     {
@@ -203,31 +203,31 @@ void ATARIpic::saveASM(QTextStream &out)
     out << "; (c) GienekP" << endl;
     out << ";" << endl;
     out << endl;
-    out << "DMACTLS = $022F;" << endl;
-    out << "DLPTRS  = $0230;" << endl;
-    out << "GTICTLS = $026F;" << endl;
-    out << "COLPM0S = $02C0;" << endl;
-    out << "COLPM1S = $02C1;" << endl;
-    out << "COLPM2S = $02C2;" << endl;
-    out << "COLPM3S = $02C3;" << endl;
-    out << "COLPF0S = $02C4;" << endl;
-    out << "COLPF1S = $02C5;" << endl;
-    out << "COLPF2S = $02C6;" << endl;
-    out << "COLPF3S = $02C7;" << endl;
-    out << "COLBAKS = $02C8;" << endl;
-    out << "HPOSP0  = $D000;" << endl;
-    out << "HPOSP1  = $D001;" << endl;
-    out << "SIZEP0  = $D008;" << endl;
-    out << "SIZEP1  = $D009;" << endl;
-    out << "GRAFP0  = $D00D;" << endl;
-    out << "GRAFP1  = $D00E;" << endl;
-    out << "COLBAK  = $D01A;" << endl;
-    out << "TRIG0   = $D010;" << endl;
-    out << "TRIG1   = $D011;" << endl;
-    out << "CONSOL  = $D01F;" << endl;
-    out << "SKCTL   = $D20F;" << endl;
+    out << "DMACTLS = $022F" << endl;
+    out << "DLPTRS  = $0230" << endl;
+    out << "GTICTLS = $026F" << endl;
+    out << "COLPM0S = $02C0" << endl;
+    out << "COLPM1S = $02C1" << endl;
+    out << "COLPM2S = $02C2" << endl;
+    out << "COLPM3S = $02C3" << endl;
+    out << "COLPF0S = $02C4" << endl;
+    out << "COLPF1S = $02C5" << endl;
+    out << "COLPF2S = $02C6" << endl;
+    out << "COLPF3S = $02C7" << endl;
+    out << "COLBAKS = $02C8" << endl;
+    out << "HPOSP0  = $D000" << endl;
+    out << "HPOSP1  = $D001" << endl;
+    out << "SIZEP0  = $D008" << endl;
+    out << "SIZEP1  = $D009" << endl;
+    out << "GRAFP0  = $D00D" << endl;
+    out << "GRAFP1  = $D00E" << endl;
+    out << "COLBAK  = $D01A" << endl;
+    out << "TRIG0   = $D010" << endl;
+    out << "TRIG1   = $D011" << endl;
+    out << "CONSOL  = $D01F" << endl;
+    out << "SKCTL   = $D20F" << endl;
     out << "WSYNC   = $D40A" << endl;
-    out << "VCOUNT  = $D40B;" << endl;
+    out << "VCOUNT  = $D40B" << endl;
     out << endl;
     out << ".define poke mva #%%2 %%1" << endl;
     out << endl;
