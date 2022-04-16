@@ -257,7 +257,8 @@ void ATARIpic::saveASM(QTextStream &out)
     out << endl;
     out << ".MACRO ANTIC_PROGRAM" << endl;
     out << "    :+204 dta $4F,a(:1+$0000+#*40)" << endl;
-    out << "    :+36 dta $4F,a(:1+$1FF0+#*40)" << endl;
+    out << "    :+35 dta $4F,a(:1+$1FF0+#*40)" << endl;
+    out << "    dta $41,a(:2)" << endl;
     out << "    dta $41,a(:2)" << endl;
     out << ".ENDM" << endl;
     out << endl;
